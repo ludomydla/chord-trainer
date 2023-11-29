@@ -1,0 +1,45 @@
+/* App.css */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.center-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-button {
+  font-size: 1.5rem;
+  padding: 10px;
+}
+
+.canvas-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas {
+  border: 2px solid #333;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #333;
+}
+
+.bottom-button {
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}

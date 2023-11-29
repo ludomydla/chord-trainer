@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+//import { useState } from 'react'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
 import './App.css'
+import { useState } from 'react';
+import Main from './pages/Main/Main';
 
-function App() {
-  const [count, setCount] = useState(0)
+// Top Nav with Title and settings page (tuning, guitar fretboard graphics)
+// Start test button in the middle 
+// Page for statisti
+// Perhaps tuner (with freq analysis over WASM? 🤷‍♂️ will see...) 
+
+
+const App = () => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!isMenuOpen);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      {/* Top Bar */}
+      <div className={"topBar"}>
+        <div className={"title"}>Your Website Title</div>
+        <div className={"hamburgerMenu"} onClick={toggleMenu}>
+          &#9776; {/* Hamburger Menu Icon */}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
 
-export default App
+      {/* Content */}
+      <div className={"content"}>
+        <Main />
+      </div>
+
+      {/* Hamburger Menu Overlay */}
+      {isMenuOpen && (
+        <div className={"menuOverlay"}>
+          {/* Your menu items go here */}
+          <div className={"menuItem"}>Menu Item 1</div>
+          <div className={"menuItem"}>Menu Item 2</div>
+          <div className={"menuItem"}>Menu Item 3</div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+
+export default App;
+
