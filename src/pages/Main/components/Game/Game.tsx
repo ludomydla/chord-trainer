@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
-import { Note, Results } from "../../../../shared/types";
-import { NOTES_ORDER } from "../../../../shared/constants";
+import { Note, Results } from "shared/types";
+import OptionsRow from "./components/OptionsRow";
+import { NOTES_ORDER } from "shared/constants";
+import FretBoard from "./components/FretBoard";
 
 type GameProps = {
   handleNextStep: () => void;
@@ -70,14 +72,14 @@ const Game = ({ handleNextStep, handleSetResults }: GameProps) => {
     }
   }, [correct, fails, handleNextStep, handleSetResults, missed])
 
-  const resolveQuestion = useCallback((answer: string | undefined, idx: number) => {
-    console.log('-------------', idx, answer, questions[idx].guess.name,)
+  const resolveQuestion = useCallback((answer: string | undefined) => {
+    console.log('-------------', questionIdx, answer, questions[questionIdx].guess.name,)
 
     if (answer === undefined) {
       setMissed(num => num + 1)
     }
 
-    if (answer === questions[idx].guess.name) {
+    if (answer === questions[questionIdx].guess.name) {
       setCorrect(num => num + 1)
     } else setFails(num => num + 1)
 
@@ -89,13 +91,10 @@ const Game = ({ handleNextStep, handleSetResults }: GameProps) => {
 
     const q: Question = questions[idx];
     return (<>
+      <div>{`${idx + 1} / ${MAX_QUESTION}`}</div>
       <div>{`To guess: ${q.guess.name}`}</div>
-
-      <div className="bottom-row">
-        {q.options.map((o) => (
-          <button className="bottom-button" onClick={() => resolveQuestion(o.name, idx)}>{o.name}</button>
-        ))}
-      </div>
+      <FretBoard selectedString={3} selectedFret={5} />
+      <OptionsRow options={q.options} handleResolve={resolveQuestion} />
     </>)
   }, [questions, resolveQuestion]);
 

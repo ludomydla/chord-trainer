@@ -1,9 +1,9 @@
-
-
 export type Note = {
   name: string;
   otherNames: string[];
 }
+
+export type NoteMap = { [key: string]: Note }
 
 export type GuitarString = {
   tuning: Note;

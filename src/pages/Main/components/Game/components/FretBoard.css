@@ -1,0 +1,35 @@
+
+.fretBoard {
+  transform-style: preserve-3d;
+  transform: perspective(10rem) rotateY(-3deg) translateX(-6rem);
+  margin: 5rem 0;
+}
+
+.fretBoard_String {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+.fretBoard_Fret {
+  flex-grow: 1;
+  border-color: silver;
+  border-style: solid;
+  border-width: 0 2px;
+  background-color: #A1662F;
+  height: 2rem;
+}
+
+.fretBoard_Fret::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: #999;
+  position: relative;
+  top: 50%;
+}
+
+.fretBoard_Highlight {
+  background: grey
+}
